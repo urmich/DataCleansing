@@ -1,0 +1,7 @@
+{"event_id":111,"event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{"f1":"a", "f2": 2}}
+{"event_id":22,"event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{"f3":"a", "f4": true}}
+{"event_id":21,"event_type":"et2","event_date":"2020-02-21 20:20:20", "data":{}
+{"event_id":"asd","event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_id":2222,"event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_id":"asd","event_type":"et1", "data":{}}

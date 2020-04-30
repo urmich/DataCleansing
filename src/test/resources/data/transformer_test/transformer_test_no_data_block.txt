@@ -1,0 +1,6 @@
+{"event_id":666,"event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_id":21,"event_type":"et2","event_date":"2020-02-21 20:20:20", "data":{}
+{"event_id":"asd","event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_type":"et1","event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_id":2222,"event_date":"2020-02-20 20:20:20", "data":{}}
+{"event_id":"asd","event_type":"et1", "data":{}}
