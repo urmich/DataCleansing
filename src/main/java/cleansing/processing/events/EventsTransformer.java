@@ -82,10 +82,6 @@ public class EventsTransformer extends DataTransformer<String> {
 				.drop(SchemaConstants.JOIN_ID_COLUMN_NAME)
 				.select(wholeDFColumns);
 
-		log.info("Caching combined DF");
-		//Cache DF for better performance
-		wholeDF.cache();
-
 		log.info("Extracting unparsable events into separate DF");
 		//Obtain only unparsable records
 		Dataset<Row> badRecordsDF = wholeDF.
@@ -101,10 +97,6 @@ public class EventsTransformer extends DataTransformer<String> {
 		//release memory
 		wholeDF.unpersist();
 		log.info("Releasing memory of combined DF");
-
-		log.info("Caching DF with parsed events");
-		//Cache DF for better performance
-		parsedRecordsDF.cache();
 		
 		log.info("Build DF with only valid events");
 		//Create DF with only valid parsed records (that contain only good values)
