@@ -12,19 +12,18 @@ public class SchemaConstants {
 		public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	}
 
-	public static final String RAW_EVENTS_COLUMN_NAME = "raw_event";
-
-	public static final String BAD_RECORD_COLUMN_NAME = "bad_record";
-
-	public static final String JOIN_ID_COLUMN_NAME = "id";
-
-	public class OptionalColumns {
-		public static final String ALL_DATA_COLUMNS = "data.*";
-		public static final String DATA_COLUMN_NAME = "data";
+	public class ValidatedEventColumns{
+		public static final String RAW_EVENT_COLUMN_NAME = "rawEvent";
+		public static final String VALIDITY_INDICATOR_EVENT_COLUMN = "rawEvent";
 	}
+
+	public static final String RAW_EVENTS_COLUMN_NAME = "raw_event";
 
 	public static final String DAY_PARTITION_COLUMN_NAME = "day";
 
 	public static final String EVENT_TYPE_PARTITION_COLUMN_NAME = "eventType";
+
+	public static final int VALID_EVENT = 1;
+	public static final int INVALID_EVENT = 0;
 
 }
