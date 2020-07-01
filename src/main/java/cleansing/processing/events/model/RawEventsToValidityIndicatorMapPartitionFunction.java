@@ -6,8 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.GenericValidator;
 import org.apache.spark.api.java.function.MapPartitionsFunction;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,8 +18,6 @@ public class RawEventsToValidityIndicatorMapPartitionFunction implements MapPart
 
     private List<RawEventValidityIndicator> rawEventValidityIndicatorList = new LinkedList();
 
-    private DateFormat sdf = new SimpleDateFormat(SchemaConstants.MandatoryDataColumns.EVENT_DATE_FORMAT);
-
     /**
      * This method attempts to resolve the JSON String and validate event mandatory parameters.
      * If all passes and valid, the @rawEvent string is mapped to 1, otherwise to 0.
@@ -33,7 +29,6 @@ public class RawEventsToValidityIndicatorMapPartitionFunction implements MapPart
     public Iterator<RawEventValidityIndicator> call(Iterator<String> iterator) throws Exception {
 
         int validityIndicator = 0;
-        sdf.setLenient(false);
         boolean eventValid = true;
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -46,14 +41,15 @@ public class RawEventsToValidityIndicatorMapPartitionFunction implements MapPart
             try {
                 //Verifying JSON by parsing it
                 event = objectMapper.readValue(rawEvent, Event.class);
-                //Verify date
-                eventValid = isEventDateValid(event.getDate());
             } catch (Exception e) {
                 eventValid = false;
             }
 
             //keep validating if no validation error occurred till now
-            eventValid = eventValid && isEventIdValid(event.getId()) && isEventTypeValid(event.getType());
+            eventValid = eventValid &&
+                    isEventDateValid(event.getDate()) &&
+                    isEventIdValid(event.getId()) &&
+                    isEventTypeValid(event.getType());
             validityIndicator = eventValid ? SchemaConstants.VALID_EVENT : SchemaConstants.INVALID_EVENT;
 
             rawEventValidityIndicatorList.add(new RawEventValidityIndicator(rawEvent, validityIndicator));
@@ -64,7 +60,7 @@ public class RawEventsToValidityIndicatorMapPartitionFunction implements MapPart
 
 
     //method that validates date
-    private boolean isEventDateValid(String eventDate){
+    private boolean isEventDateValid(String eventDate) {
         return GenericValidator.isDate(eventDate, SchemaConstants.MandatoryDataColumns.EVENT_DATE_FORMAT, true);
     }
 
