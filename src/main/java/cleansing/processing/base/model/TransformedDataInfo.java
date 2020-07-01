@@ -14,7 +14,7 @@ public class TransformedDataInfo<R> {
 	 * Transformed valid events
 	 */
 	@Getter
-	private Dataset<Row> validEvents;
+	private Dataset<R> validEvents;
 
 	/**
 	 * Invalid events in the form that thy were read by the Reader

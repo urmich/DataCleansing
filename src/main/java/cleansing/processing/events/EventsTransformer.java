@@ -25,7 +25,7 @@ public class EventsTransformer extends DataTransformer<String> {
      * Method that execute actual data transformation from raw events to valid and invalid events
      *
      * @param data Dataset of type <italic>R</italic> - data to be transformed
-     * @return
+     * @return TransformedDataInfo
      */
     public TransformedDataInfo transform(@NonNull Dataset<String> data) {
 
@@ -38,7 +38,7 @@ public class EventsTransformer extends DataTransformer<String> {
         log.info("Build DF with only valid events");
         //Create DF with only valid parsed records (that contain only good values)
         Dataset<String> validRecordsDF = validatedEventsDF
-                .filter("validityIndicator == 1")
+                .filter(SchemaConstants.ValidatedEventColumns.VALIDITY_INDICATOR_EVENT_COLUMN + " == " + SchemaConstants.VALID_EVENT)
                 .select(col(SchemaConstants.ValidatedEventColumns.RAW_EVENT_COLUMN_NAME)
                         .alias(SchemaConstants.RAW_EVENTS_COLUMN_NAME))
                 .as(Encoders.STRING());
@@ -46,7 +46,7 @@ public class EventsTransformer extends DataTransformer<String> {
         log.info("Build DF with only invalid events");
         //Create DF that contains invalid parsed records (that contain only bad values)
         Dataset<String> invalidRecordsDF = validatedEventsDF
-                .filter("validityIndicator == 0")
+                .filter(SchemaConstants.ValidatedEventColumns.VALIDITY_INDICATOR_EVENT_COLUMN + " == " + SchemaConstants.INVALID_EVENT)
                 .select(col(SchemaConstants.ValidatedEventColumns.RAW_EVENT_COLUMN_NAME)
                         .alias(SchemaConstants.RAW_EVENTS_COLUMN_NAME))
                 .as(Encoders.STRING());

@@ -14,7 +14,7 @@ public class SchemaConstants {
 
 	public class ValidatedEventColumns{
 		public static final String RAW_EVENT_COLUMN_NAME = "rawEvent";
-		public static final String VALIDITY_INDICATOR_EVENT_COLUMN = "rawEvent";
+		public static final String VALIDITY_INDICATOR_EVENT_COLUMN = "validityIndicator";
 	}
 
 	public static final String RAW_EVENTS_COLUMN_NAME = "raw_event";
