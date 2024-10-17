@@ -13,7 +13,7 @@
         <spark.version>2.4.5</spark.version>
         <lombok.version>1.18.12</lombok.version>
         <spock.version>1.3-groovy-2.5</spock.version>
-        <groovy.version>2.4.18</groovy.version>
+        <groovy.version>2.4.21</groovy.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <gmavenplus-maven-plugin.version>1.8.1</gmavenplus-maven-plugin.version>
         <slf4j.version>1.7.30</slf4j.version>
